@@ -26,7 +26,7 @@ jobs:
       run: ./gradlew clean build
 
     # /home/runner/work/spring-blog-v2-step12/spring-blog-v2-step12/deploy
-    - name: deploy packaging
+    - name: Deploy packaging
       run: |
         mkdir deploy
         cp build/libs/*.jar deploy/application.jar
@@ -34,6 +34,14 @@ jobs:
         cp -r .ebextensions deploy/.ebextensions
         cd deploy && zip -r deploy.zip .
 
-    - name: list
-      run: ls
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v22
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        application_name: blog
+        environment_name: Blog-env
+        version_label: blog-${{steps.current-time.outputs.formattedTime}}
+        region: ap-northeast-2
+        deployment_package: deploy/deploy.zip
 
