@@ -9,7 +9,9 @@
 - 배포 시작직전에 프로파일 dev로 변경해두기 (테스트해야되니까, GithubAction에서)
 
 ## 2. 배포 프로세스
-- 환경변수 세팅
+- 환경변수 세팅 (RDS_HOST, RDS_USERNAME 등등)
+- Github Action 생성
+- Github Action 테스트 설정
 
 
 ```sql
