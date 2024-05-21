@@ -18,6 +18,7 @@ import java.util.List;
 @RestController // new BoardController(IoC에서 BoardRepository를 찾아서 주입) -> IoC 컨테이너 등록
 public class BoardController {
 
+    // CICD 두번째
     private final BoardService boardService;
     private final HttpSession session;
 
